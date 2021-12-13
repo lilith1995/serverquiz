@@ -21,11 +21,9 @@ const loginValidation = {
 };
 
 router.post("/", validate(loginValidation, {}, {}), async (req, res) => {
-  res.json(200);
     if (!loginValidation) {
         return res.status(err.statusCode).json();
   }
-
     const { username, email, password } = req.body;
     
     try {

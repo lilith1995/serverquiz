@@ -21,6 +21,7 @@ app.get('/', (req, res) => res.send('API Running'))
 
 app.use('/api/questions', require('./routes/api/questions'));
 app.use('/api/users', require('./routes/api/users'));
+app.use('/api/auth', require('./routes/api/auth'));
 
 app.listen(process.env.PORT, () => {
   console.log("The API is running...");
