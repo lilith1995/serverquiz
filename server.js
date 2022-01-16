@@ -1,7 +1,9 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const passport = require('passport');
 
+const users = require('./routes/api/users');
 require("dotenv").config();
 
 const app = express();
@@ -25,8 +27,10 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/api/questions", require("./routes/api/questions"));
-app.use("/api/users", require("./routes/api/users"));
+app.use(passport.initialize());
+require('./config/passport')(passport);
+
+app.use('/api/users', users);
 
 app.listen(process.env.PORT, () => {
   console.log("The API is running...");
