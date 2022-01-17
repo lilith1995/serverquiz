@@ -4,6 +4,8 @@ const cors = require("cors");
 const passport = require('passport');
 
 const users = require('./routes/api/users');
+const questions = require('./routes/api/questions');
+
 require("dotenv").config();
 
 const app = express();
@@ -31,6 +33,7 @@ app.use(passport.initialize());
 require('./config/passport')(passport);
 
 app.use('/api/users', users);
+app.use('/api/questions', questions);
 
 app.listen(process.env.PORT, () => {
   console.log("The API is running...");
