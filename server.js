@@ -2,9 +2,11 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const passport = require('passport');
+const admincheck = require('./middleware/admincheck');
 
 const users = require('./routes/api/users');
 const questions = require('./routes/api/questions');
+const admin = require('./routes/api/admin');
 
 require("dotenv").config();
 
@@ -34,6 +36,7 @@ require('./config/passport')(passport);
 
 app.use('/api/users', users);
 app.use('/api/questions', questions);
+app.use('/api/admin', admin);
 
 app.listen(process.env.PORT, () => {
   console.log("The API is running...");
