@@ -36,7 +36,7 @@ require('./config/passport')(passport);
 
 app.use('/api/users', users);
 app.use('/api/questions', questions);
-app.use('/api/admin', admin);
+app.use('/api/admin', admincheck, admin);
 
 app.listen(process.env.PORT, () => {
   console.log("The API is running...");
