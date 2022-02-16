@@ -22,10 +22,11 @@ const UserSchema = new Schema({
     type: Date,
     default: Date.now
   },
-  isAdmin: {
-    type: Boolean,
-    default: false,
-  }
+  role: {
+    type: String,
+    enum: ['reader', 'creator', 'editor'],
+    default: 'reader',
+  },
 });
 
 module.exports = User = mongoose.model('users', UserSchema);
