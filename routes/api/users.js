@@ -116,7 +116,7 @@ router.get(
             id: req.user.id,
             name: req.user.name,
             email: req.user.email,
-            isAdmin: req.user.isAdmin
+            role: req.user.role
         });
     }
 );
