@@ -6,7 +6,6 @@ const passport = require('passport');
 const users = require('./routes/api/users');
 const questions = require('./routes/api/questions');
 const admin = require('./routes/api/admin');
-const admincheck = require('./middleware/admincheck');
 
 require("dotenv").config();
 
@@ -36,7 +35,7 @@ require('./config/passport')(passport);
 
 app.use('/api/users', users);
 app.use('/api/questions', questions);
-app.use('/api/admin', admincheck.roleAuthorization(['creator', 'editor']), admin);
+app.use('/api/admin', admin);
 
 app.listen(process.env.PORT, () => {
   console.log("The API is running...");
