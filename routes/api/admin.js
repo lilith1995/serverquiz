@@ -3,9 +3,9 @@ const mongoose = require("mongoose");
 const router = express.Router();
 
 const Question = require("../../models/Question");
-const admincheck = require('../../middleware/admincheck');
+const authenticateJWT = require('../../middleware/auth');
 
-router.post("/addQuestion", admincheck.roleAuthorization(['creator', 'editor']), async (req, res) => {
+router.post("/addQuestion", authenticateJWT, async (req, res) => {
     console.log("Hello", req.body);
     try {
 
@@ -26,7 +26,7 @@ router.post("/addQuestion", admincheck.roleAuthorization(['creator', 'editor']),
     }
 });
 
-router.delete('/deleteQuestion/:id', admincheck.roleAuthorization(['creator', 'editor']), (req, res) => {
+router.delete('/deleteQuestion/:id', authenticateJWT, (req, res) => {
     const id = req.params.id;
     Question.deleteOne({ _id: id }, (err, data) => {
         if (err) {
@@ -37,7 +37,7 @@ router.delete('/deleteQuestion/:id', admincheck.roleAuthorization(['creator', 'e
     });
 });
 
-router.put('/updateQuestion/:id', admincheck.roleAuthorization(['creator', 'editor']), async (req, res, next) => {
+router.put('/updateQuestion/:id', authenticateJWT, async (req, res, next) => {
     try {
         let question = Question.findById(req.params.id);
         if (!question) {

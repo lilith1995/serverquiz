@@ -4,6 +4,7 @@ const cors = require("cors");
 const passport = require('passport');
 
 const users = require('./routes/api/users');
+const auth = require('./routes/api/auth');
 const questions = require('./routes/api/questions');
 const admin = require('./routes/api/admin');
 
@@ -33,6 +34,7 @@ app.use((req, res, next) => {
 app.use(passport.initialize());
 require('./config/passport')(passport);
 
+app.use('/api/auth', auth);
 app.use('/api/users', users);
 app.use('/api/questions', questions);
 app.use('/api/admin', admin);

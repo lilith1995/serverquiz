@@ -22,10 +22,9 @@ const UserSchema = new Schema({
     type: Date,
     default: Date.now
   },
-  role: {
-    type: String,
-    enum: ['reader', 'creator', 'editor'],
-    default: 'reader',
+  isAdmin: {
+    type: Boolean,
+    default: 'false',
   },
 });
 
