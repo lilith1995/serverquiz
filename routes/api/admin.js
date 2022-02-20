@@ -3,9 +3,8 @@ const mongoose = require("mongoose");
 const router = express.Router();
 
 const Question = require("../../models/Question");
-const authenticateJWT = require('../../middleware/auth');
 
-router.post("/addQuestion", authenticateJWT, async (req, res) => {
+router.post("/addQuestion", async (req, res) => {
     console.log("Hello", req.body);
     try {
 
@@ -26,7 +25,7 @@ router.post("/addQuestion", authenticateJWT, async (req, res) => {
     }
 });
 
-router.delete('/deleteQuestion/:id', authenticateJWT, (req, res) => {
+router.delete('/deleteQuestion/:id', (req, res) => {
     const id = req.params.id;
     Question.deleteOne({ _id: id }, (err, data) => {
         if (err) {
@@ -37,7 +36,7 @@ router.delete('/deleteQuestion/:id', authenticateJWT, (req, res) => {
     });
 });
 
-router.put('/updateQuestion/:id', authenticateJWT, async (req, res, next) => {
+router.put('/updateQuestion/:id', async (req, res, next) => {
     try {
         let question = Question.findById(req.params.id);
         if (!question) {
